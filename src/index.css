@@ -35,7 +35,7 @@
   --min-height-590: 590px;
 
   /* Background Images */
-  --background-image-hero-pattern: url('src/data/welcome-bg.svg');
+  --background-image-hero-pattern: url('welcome-bg.svg');
 }
 
 body {
