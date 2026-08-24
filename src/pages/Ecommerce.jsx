@@ -13,6 +13,9 @@ const percentageColors = {
 };
 
 const Ecommerce = () => {
+
+  const {currentColor} = useStateContext();
+
   return (
     <div className='mt-12'>
       <section className='flex flex-wrap lg:flex-nowrap justify-center'>
@@ -30,7 +33,7 @@ const Ecommerce = () => {
           <div className='mt-6'>
             <Button 
               color="white"
-              bgColor="#03C9D7"
+              bgColor={currentColor}
               text="Download"
               borderRadius="10px"
               size="md"
@@ -101,12 +104,12 @@ const Ecommerce = () => {
 
               <div className='mt-5'>
                 <SparkLine 
-                  currentColor="#03C9D7"
+                  currentColor={currentColor}
                   id="line-sparkline"
                   type="Line"
                   height="80px"
                   width="250px"
-                  color="#03C9D7"
+                  color={currentColor}
                   data={SparklineAreaData}
                 />
               </div>
@@ -114,7 +117,7 @@ const Ecommerce = () => {
               <div className='mt-10'>
                 <Button 
                   color="white"
-                  bgColor="#03C9D7"
+                  bgColor={currentColor}
                   text="Download Report"
                   borderRadius="10px"
                   size="md"
@@ -134,7 +137,7 @@ const Ecommerce = () => {
         <div>
           <div 
             className='rounded-2xl md:w-400 p-4 m-3'
-            style={{backgroundColor: '#03C9D7'}}
+            style={{backgroundColor: currentColor}}
           >
             <div className='flex justify-between items-center'>
               <p className='font-semibold text-white text-2xl'>Earnings</p>
@@ -146,7 +149,7 @@ const Ecommerce = () => {
             </div>
 
             <div className='mt-6'>
-              <SparkLine currentColor="#03C9D7" id="column-sparkline" height="100px" type="Column" data={SparklineAreaData} width="320" color="white" />
+              <SparkLine currentColor={currentColor} id="column-sparkline" height="100px" type="Column" data={SparklineAreaData} width="320" color="white" />
             </div>
           </div>
 

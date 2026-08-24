@@ -16,7 +16,7 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
       type="button"
       onClick={() => customFunc()}
       style={{ color }}
-      className="relative text-xl rounded-full p-3 hover:bg-gray-200 cursor-pointer"
+      className="relative text-xl rounded-full p-3 hover:bg-gray-200 cursor-pointer dark:hover:bg-gray-700"
     >
       <span
         style={{ background: dotColor }}
@@ -68,14 +68,14 @@ const Navbar = () => {
         />
         <NavButton
           title="Chat"
-          dotColor="#03C9D7"
+          dotColor={currentColor}
           customFunc={() => handleClick("chat")}
-          color="#03C9D7"
+          color={currentColor}
           icon={<BsChatLeft />}
         />
         <NavButton
           title="Notifications"
-          dotColor="#03C9D7"
+          dotColor={currentColor}
           customFunc={() => handleClick("notification")}
           color={currentColor}
           icon={<IoNotificationsOutline />}
@@ -83,13 +83,13 @@ const Navbar = () => {
 
         <TooltipComponent content="Profile" position="BottomCenter">
           <div
-            className="flex items-center gap-2 cursor-pointer p-1 hover:bg-gray-200 rounded-lg"
+            className="flex items-center gap-2 cursor-pointer p-1 hover:bg-gray-200 rounded-lg dark:hover:bg-gray-700"
             onClick={() => handleClick("userProfile")}
           >
             <img src={avatar} className="rounded-full h-7 w-7" />
             <p>
               <span className="text-gray-400 text-14">Hi, </span>{" "}
-              <span className="text-gray-400 ml-1 font-bold text-xl">
+              <span className="ml-1 font-bold text-xl" style={{color: currentColor}}>
                 Mangalam
               </span>
             </p>

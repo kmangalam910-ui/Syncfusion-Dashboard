@@ -11,10 +11,10 @@ const Sidebar = () => {
     useStateContext();
 
   const activeLink =
-    "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2 bg-[#03C9D7]";
+    "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2";
 
   const normalLink =
-    "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-gray-200 m-2";
+    "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 m-2";
 
   const handleCloseSideBar = () => {
     if (activeMenu !== undefined && screenSize <= 900) {
@@ -56,9 +56,12 @@ const Sidebar = () => {
                     to={`/${link.name}`}
                     key={link.name}
                     onClick={handleCloseSideBar}
-                    className={({ isActive }) =>
+                    className={({ isActive }) => 
                       isActive ? activeLink : normalLink
                     }
+                    style={({isActive}) => ({
+                      backgroundColor: isActive ? currentColor : ''
+                    })}
                   >
                     {link.icon}
                     <span className="capitalize">{link.name}</span>
