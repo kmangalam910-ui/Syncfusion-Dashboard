@@ -1,27 +1,29 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { Navbar, Footer, Sidebar, ThemeSettings } from "./components";
 import { useStateContext } from "./contexts/ContextProvider";
-import {
-  Ecommerce,
-  Orders,
-  Calendar,
-  Employees,
-  Stacked,
-  Pyramid,
-  Customers,
-  Kanban,
-  Line,
-  Area,
-  Bar,
-  Pie,
-  Financial,
-  ColorPicker,
-  ColorMapping,
-  Editor,
-} from "./pages";
+import Skeleton from "./components/Skeleton";
+import PageLoading from "./components/PageLoading";
 import "./App.css";
+
+const Customers = lazy(() => import("./pages/Customers"));
+const Ecommerce = lazy(() => import("./pages/Ecommerce"));
+const Orders = lazy(() => import("./pages/Orders"));
+const Employees = lazy(() => import("./pages/Employees"));
+const Kanban = lazy(() => import("./pages/Kanban"));
+const Editor = lazy(() => import("./pages/Editor"));
+const Calendar = lazy(() => import("./pages/Calendar"));
+const ColorPicker = lazy(() => import("./pages/ColorPicker"));
+const Line = lazy(() => import("./pages/Charts/Line"));
+const Area = lazy(() => import("./pages/Charts/Area"));
+const Pie = lazy(() => import("./pages/Charts/Pie"));
+const Financial = lazy(() => import("./pages/Charts/Financial"));
+const Bar = lazy(() => import("./pages/Charts/Bar"));
+const ColorMapping = lazy(() => import("./pages/Charts/ColorMapping"));
+const Pyramid = lazy(() => import("./pages/Charts/Pyramid"));
+const Stacked = lazy(() => import("./pages/Charts/Stacked"));
 
 const App = () => {
   const {
@@ -66,25 +68,36 @@ const App = () => {
 
             <div>
               {themeSettings && <ThemeSettings />}
-              <Routes>
-                <Route path="/" element={<Ecommerce />} />
-                <Route path="/ecommerce" element={<Ecommerce />} />
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/employees" element={<Employees />} />
-                <Route path="/customers" element={<Customers />} />
-                <Route path="/kanban" element={<Kanban />} />
-                <Route path="/editor" element={<Editor />} />
-                <Route path="/calendar" element={<Calendar />} />
-                <Route path="/color-picker" element={<ColorPicker />} />
-                <Route path="/line" element={<Line />} />
-                <Route path="/area" element={<Area />} />
-                <Route path="/bar" element={<Bar />} />
-                <Route path="/pie" element={<Pie />} />
-                <Route path="/financial" element={<Financial />} />
-                <Route path="/color-mapping" element={<ColorMapping />} />
-                <Route path="/pyramid" element={<Pyramid />} />
-                <Route path="/stacked" element={<Stacked />} />
-              </Routes>
+              <PageLoading>
+                <Suspense fallback={<Skeleton />}>
+                  <Routes>
+                    {/* Dashboard */}
+                    <Route path="/" element={<Ecommerce />} />
+                    <Route path="/ecommerce" element={<Ecommerce />} />
+
+                    {/* Pages */}
+                    <Route path="/orders" element={<Orders />} />
+                    <Route path="/employees" element={<Employees />} />
+                    <Route path="/customers" element={<Customers />} />
+
+                    {/* Apps */}
+                    <Route path="/kanban" element={<Kanban />} />
+                    <Route path="/editor" element={<Editor />} />
+                    <Route path="/calendar" element={<Calendar />} />
+                    <Route path="/color-picker" element={<ColorPicker />} />
+
+                    {/* Charts */}
+                    <Route path="/line" element={<Line />} />
+                    <Route path="/area" element={<Area />} />
+                    <Route path="/bar" element={<Bar />} />
+                    <Route path="/pie" element={<Pie />} />
+                    <Route path="/financial" element={<Financial />} />
+                    <Route path="/color-mapping" element={<ColorMapping />} />
+                    <Route path="/pyramid" element={<Pyramid />} />
+                    <Route path="/stacked" element={<Stacked />} />
+                  </Routes>
+                </Suspense>
+              </PageLoading>
             </div>
             <Footer />
           </div>
