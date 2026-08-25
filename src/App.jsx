@@ -68,8 +68,8 @@ const App = () => {
 
             <div>
               {themeSettings && <ThemeSettings />}
-              <PageLoading>
-                <Suspense fallback={<Skeleton />}>
+              <Suspense fallback={<Skeleton />}>
+                <PageLoading>
                   <Routes>
                     {/* Dashboard */}
                     <Route path="/" element={<Ecommerce />} />
@@ -96,8 +96,8 @@ const App = () => {
                     <Route path="/pyramid" element={<Pyramid />} />
                     <Route path="/stacked" element={<Stacked />} />
                   </Routes>
-                </Suspense>
-              </PageLoading>
+                </PageLoading>
+              </Suspense>
             </div>
             <Footer />
           </div>
