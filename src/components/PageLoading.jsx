@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Skeleton from "./Skeleton";
 
@@ -7,7 +7,7 @@ const PageLoading = ({children}) => {
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setIsLoading(true);
 
     const timer = setTimeout(() => {
